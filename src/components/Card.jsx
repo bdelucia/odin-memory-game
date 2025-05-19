@@ -1,20 +1,13 @@
-import "../index.css";
+import '../index.css';
 
-function Card({ cardInfo, setCardInfo }) {
+function Card({ name, sprite }) {
   return (
-    <div className="card bg-base-100 w-96 shadow-sm">
+    <div className="card bg-primary w-96 shadow-sm">
       <figure>
-        <img src={cardInfo.image} alt="Shoes" />
+        <img src={sprite} alt={name} />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">Card Title</h2>
-        <p>
-          A card component has a figure, a body part, and inside body there are
-          title and actions parts
-        </p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
-        </div>
+        <h2 className="card-title flex justify-center align-middle">{name}</h2>
       </div>
     </div>
   );
