@@ -9,14 +9,24 @@ function App() {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
+  function cleanPokemonName(name) {
+    // Remove form suffixes like "-incarnate", "-ordinary", etc.
+    return name.split('-')[0];
+  }
+
   useEffect(() => {
     async function fetchRandomPokemons() {
-      const cardCount = 6;
+      const cardCount = 8;
       const randomIds = new Set();
 
-      // Ensure no duplicates (rare but could happen)
+      // Gen V Pokémon IDs range from 494 to 649
+      const genVMinId = 494;
+      const genVMaxId = 649;
+
       while (randomIds.size < cardCount) {
-        randomIds.add(Math.floor(Math.random() * 1025) + 1);
+        randomIds.add(
+          Math.floor(Math.random() * (genVMaxId - genVMinId + 1)) + genVMinId
+        );
       }
 
       const promises = Array.from(randomIds).map((id) =>
@@ -29,7 +39,7 @@ function App() {
         const results = await Promise.all(promises);
         const cardData = results.map((data) => ({
           id: data.id,
-          name: capitalize(data.name),
+          name: capitalize(cleanPokemonName(data.name)),
           sprite: data.sprites.front_default,
         }));
         setCards(cardData);
@@ -42,10 +52,12 @@ function App() {
   }, []);
 
   return (
-    <div className="grid grid-cols-4 gap-4">
-      {cards.map((card) => (
-        <Card key={card.id} name={card.name} sprite={card.sprite} />
-      ))}
+    <div className="flex justify-center">
+      <div className="grid grid-cols-4 gap-4">
+        {cards.map((card) => (
+          <Card key={card.id} name={card.name} sprite={card.sprite} />
+        ))}
+      </div>
     </div>
   );
 }
