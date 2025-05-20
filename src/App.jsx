@@ -9,6 +9,9 @@ function App() {
   const [cards, setCards] = useState([]);
   const [areAllFlipped, setAreAllFlipped] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [clickedOn, setClickedOn] = useState(false);
+  const [score, setScore] = useState(0);
+  const [clickedCards, setClickedCards] = useState(new Set());
 
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -29,7 +32,17 @@ function App() {
     return newArray;
   }
 
-  function handleCardFlip() {
+  function handleCardFlip(cardId) {
+    if (clickedCards.has(cardId)) {
+      // Reset score and clickedCards
+      setScore(0);
+      setClickedCards(new Set());
+    } else {
+      const newClicked = new Set(clickedCards);
+      newClicked.add(cardId);
+      setClickedCards(newClicked);
+      setScore((prev) => prev + 1);
+    }
     // First flip all cards to back side
     setAreAllFlipped(true);
 
@@ -90,7 +103,7 @@ function App() {
 
       <div className="flex flex-1 flex-col justify-center items-center gap-16">
         <div className="flex flex-col bg- items-center">
-          <Score />
+          <Score score={score} />
         </div>
         {isLoading ? (
           <span className="loading loading-infinity loading-xl"></span>
@@ -102,7 +115,9 @@ function App() {
                 name={card.name}
                 sprite={card.sprite}
                 isFlipped={areAllFlipped}
-                onFlip={handleCardFlip}
+                onFlip={() => handleCardFlip(card.id)}
+                clickedOn={clickedOn}
+                setClickedOn={setClickedOn}
               />
             ))}
           </div>

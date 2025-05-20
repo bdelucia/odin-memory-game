@@ -1,10 +1,10 @@
 import "../index.css";
 
-function Score() {
+function Score({ score }) {
   return (
     <div className="flex justify-center mb-2">
       <div className="badge badge-secondary badge-lg">
-        Score: <span id="score">0</span>
+        Score: <span id="score">{score}</span>
       </div>
     </div>
   );
