@@ -1,6 +1,8 @@
 import './index.css';
 import { useEffect, useState } from 'react';
 import Card from './components/Card';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -16,7 +18,7 @@ function App() {
 
   useEffect(() => {
     async function fetchRandomPokemons() {
-      const cardCount = 8;
+      const cardCount = 10;
       const randomIds = new Set();
 
       // Gen V Pokémon IDs range from 494 to 649
@@ -52,12 +54,18 @@ function App() {
   }, []);
 
   return (
-    <div className="flex justify-center">
-      <div className="grid grid-cols-4 gap-4">
-        {cards.map((card) => (
-          <Card key={card.id} name={card.name} sprite={card.sprite} />
-        ))}
+    <div className="min-h-screen flex flex-col items-center">
+      <Header />
+
+      <div className="flex flex-1 justify-center items-center pt-4 pb-4">
+        <div className="grid grid-cols-5 gap-4">
+          {cards.map((card) => (
+            <Card key={card.id} name={card.name} sprite={card.sprite} />
+          ))}
+        </div>
       </div>
+
+      <Footer />
     </div>
   );
 }
