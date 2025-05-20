@@ -1,12 +1,14 @@
-import './index.css';
-import { useEffect, useState } from 'react';
-import Card from './components/Card';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import "./index.css";
+import { useEffect, useState } from "react";
+import Card from "./components/Card";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Score from "./components/Score";
 
 function App() {
   const [cards, setCards] = useState([]);
   const [areAllFlipped, setAreAllFlipped] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -14,7 +16,7 @@ function App() {
 
   function cleanPokemonName(name) {
     // Remove form suffixes like "-incarnate", "-ordinary", etc.
-    return name.split('-')[0];
+    return name.split("-")[0];
   }
 
   // Fisher-Yates shuffle algorithm
@@ -45,10 +47,10 @@ function App() {
 
   useEffect(() => {
     async function fetchRandomPokemons() {
+      setIsLoading(true); // Show loader
+
       const cardCount = 10;
       const randomIds = new Set();
-
-      // Gen V Pokémon IDs range from 494 to 649
       const genVMinId = 494;
       const genVMaxId = 649;
 
@@ -73,7 +75,9 @@ function App() {
         }));
         setCards(cardData);
       } catch (err) {
-        console.error('Failed to fetch Pokemon API data, error:', err);
+        console.error("Failed to fetch Pokemon API data, error:", err);
+      } finally {
+        setIsLoading(false); // Hide loader
       }
     }
 
@@ -84,18 +88,25 @@ function App() {
     <div className="min-h-screen flex flex-col items-center">
       <Header />
 
-      <div className="flex flex-1 justify-center items-center pt-4 pb-4">
-        <div className="grid grid-cols-5 gap-4">
-          {cards.map((card) => (
-            <Card
-              key={card.id}
-              name={card.name}
-              sprite={card.sprite}
-              isFlipped={areAllFlipped}
-              onFlip={handleCardFlip}
-            />
-          ))}
+      <div className="flex flex-1 flex-col justify-center items-center gap-16">
+        <div className="flex flex-col bg- items-center">
+          <Score />
         </div>
+        {isLoading ? (
+          <span className="loading loading-infinity loading-xl"></span>
+        ) : (
+          <div className="grid grid-cols-5 gap-4">
+            {cards.map((card) => (
+              <Card
+                key={card.id}
+                name={card.name}
+                sprite={card.sprite}
+                isFlipped={areAllFlipped}
+                onFlip={handleCardFlip}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       <Footer />

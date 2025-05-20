@@ -1,7 +1,7 @@
-import '../index.css';
-import Tilt from 'react-parallax-tilt';
-import ReactCardFlip from 'react-card-flip';
-import PokeBall from '../assets/pokeball.svg';
+import "../index.css";
+import Tilt from "react-parallax-tilt";
+import ReactCardFlip from "react-card-flip";
+import PokeBall from "../assets/pokeball.svg";
 
 function Card({ name, sprite, isFlipped, onFlip }) {
   return (

@@ -1,4 +1,4 @@
-import '../index.css';
+import "../index.css";
 
 function ThemeSwitcher() {
   return (
@@ -26,6 +26,15 @@ function ThemeSwitcher() {
               name="theme-dropdown"
               className="theme-controller w-full btn btn-sm btn-ghost justify-start"
               aria-label="Default"
+              value="autumn"
+            />
+          </li>
+          <li>
+            <input
+              type="radio"
+              name="theme-dropdown"
+              className="theme-controller w-full btn btn-sm btn-ghost justify-start"
+              aria-label="Dracula"
               value="dracula"
             />
           </li>
@@ -34,8 +43,8 @@ function ThemeSwitcher() {
               type="radio"
               name="theme-dropdown"
               className="theme-controller w-full btn btn-sm btn-ghost justify-start"
-              aria-label="Sunset"
-              value="sunset"
+              aria-label="Nord"
+              value="nord"
             />
           </li>
           <li>
@@ -43,26 +52,8 @@ function ThemeSwitcher() {
               type="radio"
               name="theme-dropdown"
               className="theme-controller w-full btn btn-sm btn-ghost justify-start"
-              aria-label="Forest"
-              value="forest"
-            />
-          </li>
-          <li>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller w-full btn btn-sm btn-ghost justify-start"
-              aria-label="Emerald"
-              value="emerald"
-            />
-          </li>
-          <li>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller w-full btn btn-sm btn-ghost justify-start"
-              aria-label="Aqua"
-              value="aqua"
+              aria-label="Pastel"
+              value="pastel"
             />
           </li>
         </ul>
