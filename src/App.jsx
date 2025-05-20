@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 
 function App() {
   const [cards, setCards] = useState([]);
+  const [areAllFlipped, setAreAllFlipped] = useState(false);
 
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -14,6 +15,32 @@ function App() {
   function cleanPokemonName(name) {
     // Remove form suffixes like "-incarnate", "-ordinary", etc.
     return name.split('-')[0];
+  }
+
+  // Fisher-Yates shuffle algorithm
+  function shuffleArray(array) {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+  }
+
+  function handleCardFlip() {
+    // First flip all cards to back side
+    setAreAllFlipped(true);
+
+    // After showing backs, wait before shuffling and flipping back
+    setTimeout(() => {
+      // First flip all cards back
+      setAreAllFlipped(false);
+
+      // Then after the flip-back animation completes, shuffle the cards
+      setTimeout(() => {
+        setCards(shuffleArray(cards));
+      }, 325); // Wait for flip animation to complete before shuffling
+    }, 750);
   }
 
   useEffect(() => {
@@ -60,7 +87,13 @@ function App() {
       <div className="flex flex-1 justify-center items-center pt-4 pb-4">
         <div className="grid grid-cols-5 gap-4">
           {cards.map((card) => (
-            <Card key={card.id} name={card.name} sprite={card.sprite} />
+            <Card
+              key={card.id}
+              name={card.name}
+              sprite={card.sprite}
+              isFlipped={areAllFlipped}
+              onFlip={handleCardFlip}
+            />
           ))}
         </div>
       </div>

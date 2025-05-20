@@ -5,7 +5,7 @@ function Header() {
     <header className="navbar bg-secondary text-primary-content">
       <div className="navbar-start">
         <a className="btn btn-ghost normal-case text-xl">
-          React Memory Card Game
+          React.js Memory Card Game
         </a>
       </div>
       <div className="navbar-end p-2">

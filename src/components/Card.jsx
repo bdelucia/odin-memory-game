@@ -1,15 +1,12 @@
 import '../index.css';
 import Tilt from 'react-parallax-tilt';
-import { useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
 import PokeBall from '../assets/pokeball.svg';
 
-function Card({ name, sprite }) {
-  const [isFlipped, setIsFlipped] = useState(false);
-
+function Card({ name, sprite, isFlipped, onFlip }) {
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-      <div onClick={() => setIsFlipped(true)} key="front">
+      <div onClick={onFlip} key="front">
         <Tilt className="cursor-pointer">
           <div className="card bg-secondary w-48 h-64">
             <figure className="pt-2">
@@ -22,7 +19,7 @@ function Card({ name, sprite }) {
         </Tilt>
       </div>
 
-      <div onClick={() => setIsFlipped(false)} key="back">
+      <div onClick={onFlip} key="back">
         <Tilt className="cursor-pointer">
           <div className="card bg-primary w-48 h-64">
             <figure>
