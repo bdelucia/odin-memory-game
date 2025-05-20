@@ -14,7 +14,6 @@ function App() {
   const [bestScore, setBestScore] = useState(0);
   const [clickedCards, setClickedCards] = useState(new Set());
   const [gameWon, setGameWon] = useState(false);
-  const [gameId, setGameId] = useState(0);
   const modalRef = useRef(null);
 
   function capitalize(str) {
@@ -49,7 +48,7 @@ function App() {
       newClicked.add(cardId);
       setClickedCards(newClicked);
       setScore((prev) => prev + 1);
-      if (newClicked.size === 1) {
+      if (newClicked.size === cards.length) {
         setGameWon(true);
       }
     }
