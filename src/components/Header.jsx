@@ -9,7 +9,7 @@ function Header() {
         </a>
       </div>
       <div className="navbar-end p-2">
-        <div id="theme-switcher">
+        <div id="theme-switcher" className="absolute top-2 right-2">
           <ThemeSwitcher />
         </div>
       </div>
