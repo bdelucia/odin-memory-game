@@ -1,12 +1,7 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Deployed on Vercel, this is a simple memory game that shows off how useEffect can be used to synchronize asynchronous actions, like fetching from the PokeAPI.
+This game randomly picks 10 Gen V (White/Black) Pokemon, and the goal is to click on each pokemon only once. The cards are shuffled after each click.
+This project utilizes the TailwindCSS component library DaisyUI. DaisyUI makes it easy to change themes and quickly make functional (and sexy) components quickly.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+I could've done more, like adding difficulty (amount of cards) or allowing the user to choose what generations of Pokemon to choose from, but I have demonstrated the project's lesson of useEffect, so I'm moving on.
