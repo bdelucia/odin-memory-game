@@ -134,14 +134,14 @@ function App() {
 
       <Header />
 
-      <div className="flex flex-1 flex-col justify-center items-center gap-16">
+      <div className="flex flex-1 flex-col justify-center items-center pt-8 pb-8 gap-16">
         <div className="flex flex-col bg- items-center">
           <Score score={score} bestScore={bestScore} />
         </div>
         {isLoading ? (
           <span className="loading loading-infinity loading-xl"></span>
         ) : (
-          <div className="grid grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {cards.map((card) => (
               <Card
                 key={card.id}
